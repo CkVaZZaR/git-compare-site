@@ -175,3 +175,67 @@ button:disabled {
   align-self: center;
   text-align: center;
 }
+
+/* index.css */
+.export-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.export-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.export-button:hover {
+  background-color: #218838;
+}
+
+.export-button:active {
+  transform: translateY(1px);
+}
+
+.export-button:before {
+  content: "📥";
+  font-size: 18px;
+}
+
+/* Добавим в index.css */
+#comparison-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  #comparison-content,
+  #comparison-content * {
+    visibility: visible;
+  }
+  
+  #comparison-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none;
+  }
+  
+  .export-button {
+    display: none;
+  }
+}

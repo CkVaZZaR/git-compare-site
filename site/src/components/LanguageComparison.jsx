@@ -151,7 +151,43 @@ const LanguageComparison = ({ user1, user2 }) => {
       </div>
 
       <div className='chart-wrapper'>
-        <Bar data={data} options={options} />
+        {/* <Bar data={data} options={options} /> */}
+        <Bar
+          data={data}
+          options={{
+            ...options,
+            plugins: {
+              ...options.plugins,
+              legend: {
+                ...options.plugins.legend,
+                labels: {
+                  font: {
+                    size: 12, // Увеличиваем размер шрифта для PDF
+                  },
+                },
+              },
+            },
+            scales: {
+              ...options.scales,
+              x: {
+                ...options.scales.x,
+                ticks: {
+                  font: {
+                    size: 10, // Уменьшаем размер шрифта для оси X
+                  },
+                },
+              },
+              y: {
+                ...options.scales.y,
+                ticks: {
+                  font: {
+                    size: 10, // Уменьшаем размер шрифта для оси Y
+                  },
+                },
+              },
+            },
+          }}
+        />
       </div>
     </div>
   );

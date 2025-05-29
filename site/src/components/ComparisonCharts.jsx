@@ -66,7 +66,40 @@ const ComparisonCharts = ({ user1, user2 }) => {
 
   return (
     <div className='comparison-chart'>
-      <Bar data={data} options={options} />
+      {/* <Bar data={data} options={options} /> */}
+      <Bar
+        data={data}
+        options={{
+          ...options,
+          plugins: {
+            ...options.plugins,
+            legend: {
+              labels: {
+                font: {
+                  size: 12, // Увеличиваем размер шрифта для PDF
+                },
+              },
+            },
+          },
+          scales: {
+            y: {
+              ...options.scales.y,
+              ticks: {
+                font: {
+                  size: 10, // Уменьшаем размер шрифта для оси Y
+                },
+              },
+            },
+            x: {
+              ticks: {
+                font: {
+                  size: 10, // Уменьшаем размер шрифта для оси X
+                },
+              },
+            },
+          },
+        }}
+      />
     </div>
   );
 };

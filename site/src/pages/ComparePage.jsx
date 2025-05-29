@@ -3,7 +3,8 @@ import axios from "axios";
 import UserCard from "../components/UserCard";
 import CompareTable from "../components/CompareTable";
 import ComparisonCharts from "../components/ComparisonCharts";
-import LanguageComparison from "../components/LanguageComparison"; // Новый компонент
+import LanguageComparison from "../components/LanguageComparison";
+import PdfExporter from "../components/PdfExporter";
 
 const ComparePage = () => {
   const [username1, setUsername1] = useState("");
@@ -93,7 +94,7 @@ const ComparePage = () => {
 
       {error && <p className='error'>{error}</p>}
 
-      {user1 && user2 && (
+      {/* {user1 && user2 && (
         <div className='compare-results'>
           <div className='users-container'>
             <UserCard user={user1} />
@@ -105,6 +106,29 @@ const ComparePage = () => {
           <LanguageComparison user1={user1} user2={user2} />
 
           <CompareTable user1={user1} user2={user2} />
+        </div>
+      )} */}
+      {user1 && user2 && (
+        <div>
+          <div className='export-container'>
+            <PdfExporter
+              contentId='comparison-content'
+              fileName={`github_compare_${user1.login}_vs_${user2.login}.pdf`}
+            />
+          </div>
+
+          <div id='comparison-content'>
+            <div className='users-container'>
+              <UserCard user={user1} />
+              <UserCard user={user2} />
+            </div>
+
+            <ComparisonCharts user1={user1} user2={user2} />
+
+            <LanguageComparison user1={user1} user2={user2} />
+
+            <CompareTable user1={user1} user2={user2} />
+          </div>
         </div>
       )}
     </div>
